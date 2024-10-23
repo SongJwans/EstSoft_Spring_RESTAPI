@@ -76,3 +76,11 @@ Content-Type: application/json
 ### 게시글과 댓글 정보를 한번에 조회하는 REST API
 GET localhost:8080/api/articles/3/comments
 Content-Type: application/json
+
+### Article Data 가져오기
+GET localhost:8080/api/import-articles
+Content-Type: application/json
+
+### Comments Data 가져오기
+GET localhost:8080/api/import-comments
+Content-Type: application/json
