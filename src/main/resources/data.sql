@@ -1,0 +1,10 @@
+-- INSERT INTO member (name) VALUES ('주환')
+-- INSERT INTO member (name) VALUES ('찬진')
+-- INSERT INTO member (name) VALUES ('정민')
+--
+-- INSERT INTO article (title, content, created_at, updated_at) VALUES ('여행 기록 - LA','LA에 다녀온 건에 대하여',now(),now())
+-- INSERT INTO article (title, content, created_at, updated_at) VALUES ('여행 기록 - San Francisco','pier 39 에서 크램차우더를 먹으면서',now(),now())
+-- INSERT INTO article (title, content, created_at, updated_at) VALUES ('여행 기록 - Las Vegas','환락의 도시 라스베가스',now(),now())
+--
+-- INSERT into book(id, name, author) values('첫번째', '채식주의자', '한강')
+-- INSERT into book(id, name, author) values('두번째', 'JPA 프로그래밍', '김영한')

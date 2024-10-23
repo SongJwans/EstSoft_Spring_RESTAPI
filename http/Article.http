@@ -1,0 +1,78 @@
+###
+POST http://localhost:8080/api/articles
+Content-Type: application/json
+
+{
+  "title": "여행 기록 - LA",
+  "content": "LA에 다녀온 건에 대하여"
+}
+
+###
+POST http://localhost:8080/api/articles
+Content-Type: application/json
+
+{
+  "title": "여행 기록 - San Francisco",
+  "content": "pier 39 에서 크램차우더를 먹으면서 "
+}
+
+###
+POST http://localhost:8080/api/articles
+Content-Type: application/json
+
+
+{
+  "title": "여행 기록 - Las Vegas",
+  "content": "환락의 도시 라스베가스"
+}
+
+
+### 게시글 조회 API
+GET http://localhost:8080/api/articles
+Content-Type: application/json
+
+### 게시글 단건 조회 API
+
+GET localhost:8080/api/articles/{{id}}
+Content-Type: application/json
+
+### 게시글 단건 삭제 API
+
+DELETE localhost:8080/api/articles/1
+Content-Type: application/json
+
+### 게시글 단건 수정 API
+PUT localhost:8080/api/articles/2
+Content-Type: application/json
+
+{
+  "title": "변경된 제목",
+  "content": "변경된 내용"
+}
+
+### 댓글 정보 생성 REST API
+POST localhost:8080/api/articles/2/comments
+Content-Type: application/json
+
+{
+  "body": "2번째 comment"
+}
+
+### 댓글 정보 조회 REST API
+GET localhost:8080/api/comments/4
+
+### 댓글 정보 수정 REST API
+PUT localhost:8080/api/comments/3
+Content-Type: application/json
+
+{
+  "body": "수정 댓글 내용1"
+}
+
+### 댓글 정보 삭제 REST API
+DELETE localhost:8080/api/comments/3
+Content-Type: application/json
+
+### 게시글과 댓글 정보를 한번에 조회하는 REST API
+GET localhost:8080/api/articles/3/comments
+Content-Type: application/json
