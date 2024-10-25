@@ -18,11 +18,15 @@ public class DataController {
 
     @GetMapping("/import-articles")
     public ResponseEntity<List<ArticleDTO>> importArticles() {
-        return ResponseEntity.ok(dataImportService.importArticles().stream().map(ArticleDTO::new).toList());
+        return ResponseEntity.ok(dataImportService.importArticles().stream()
+                .map(ArticleDTO::new)
+                .toList());
     }
 
     @GetMapping("/import-comments")
     public ResponseEntity<List<CommentDTO>> importComments() {
-        return ResponseEntity.ok(dataImportService.importComments().stream().map(CommentDTO::new).toList());
+        return ResponseEntity.ok(dataImportService.importComments().stream()
+                .map(CommentDTO::new)
+                .toList());
     }
 }
