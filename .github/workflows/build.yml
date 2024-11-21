@@ -14,7 +14,7 @@ on:
     branches: [ "main" ]
 
 env:
-  S3_BUCKET_NAME: spring-burket
+  S3_BUCKET_NAME:spring-burket
   AWS_REGION: ap-northeast-2
   
 jobs:
