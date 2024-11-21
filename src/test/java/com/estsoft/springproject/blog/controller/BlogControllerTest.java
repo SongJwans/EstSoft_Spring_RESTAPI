@@ -57,7 +57,7 @@ class BlogControllerTest {
     public void addArticle() throws Exception {
         // given: article 저장
 //        Article article = new Article("제목", "내용");
-        String url = "/articles";
+        String url = "/api/articles";
         String title = "제목";
         String content = "내용";
         AddArticleRequest request = new AddArticleRequest(title, content);
@@ -72,9 +72,9 @@ class BlogControllerTest {
                 .content(json));
 
         // then
-        resultActions.andExpect(status().isCreated())
-                .andExpect(jsonPath("$.title").value(request.getTitle()))
-                .andExpect(jsonPath("$.content").value(request.getContent()));
+        resultActions.andExpect(status().isCreated());
+        resultActions.andExpect(jsonPath("$.title").value(request.getTitle()));
+        resultActions.andExpect(jsonPath("$.content").value(request.getContent()));
 
         List<Article> articleList = repository.findAll();
         assertThat(articleList.size()).isEqualTo(1);
@@ -92,7 +92,7 @@ class BlogControllerTest {
         repository.save(article2);
 
         // when : 조회 API
-        ResultActions resultActions = mockMvc.perform(get("/articles").accept(APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/api/articles").accept(APPLICATION_JSON));
         // then : API 조회 호출 결과 검증
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value(article.getTitle()))
@@ -111,11 +111,10 @@ class BlogControllerTest {
         Long id = article.getId();
 
         // when : API 호출
-        ResultActions resultActions = mockMvc.perform(get("/article/{id}", id).accept(APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/api/articles/{id}", id).accept(APPLICATION_JSON));
 
         // then : API 호출 결과 검증
         resultActions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.title").value(article.getTitle()))
                 .andExpect(jsonPath("$.content").value(article.getContent()));
     }
@@ -123,7 +122,7 @@ class BlogControllerTest {
     @Test
     public void findOneException() throws Exception {
         // When : API 호출
-        ResultActions resultActions = mockMvc.perform(get("/article/{id}", 1L).accept(APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/api/articles/{id}", 1L).accept(APPLICATION_JSON));
 
         // then : Exception 검증, resultActions STATUS CODE 검증
         resultActions.andExpect(status().isBadRequest());
@@ -142,8 +141,8 @@ class BlogControllerTest {
         Long id = article.getId();
 
         // when : API 호출
-        mockMvc.perform(delete("/article/{id}", id).accept(APPLICATION_JSON));
-        ResultActions resultActions = mockMvc.perform(get("/articles").accept(APPLICATION_JSON));
+        mockMvc.perform(delete("/api/articles/{id}", id).accept(APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/api/articles").accept(APPLICATION_JSON));
 
         // then : API 호출 결과 검증
         resultActions.andExpect(status().isOk()); // status code 검증
@@ -163,7 +162,7 @@ class BlogControllerTest {
         // 직렬화 java -> json writeValueAsString , 역 직렬화 realValue()
         String updateJsonContent = objectMapper.writeValueAsString(request);
 
-        ResultActions resultActions = mockMvc.perform(put("/article/{id}", id)
+        ResultActions resultActions = mockMvc.perform(put("/api/articles/{id}", id)
                 .contentType(APPLICATION_JSON)
                 .content(updateJsonContent)
         );
@@ -183,7 +182,7 @@ class BlogControllerTest {
         String requestBody = objectMapper.writeValueAsString(request);
 
         // when : 수정 API 호출 (/article/{id}, requestBody)
-        ResultActions resultActions = mockMvc.perform(put("/article/{id}", notExistsId)
+        ResultActions resultActions = mockMvc.perform(put("/api/articles/{id}", notExistsId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody));
 

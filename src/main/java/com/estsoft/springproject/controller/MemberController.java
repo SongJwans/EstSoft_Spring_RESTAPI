@@ -2,6 +2,7 @@ package com.estsoft.springproject.controller;
 
 import com.estsoft.springproject.entity.Member;
 import com.estsoft.springproject.service.MemberService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +19,8 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    public List<Member> getAllMember() {
-        return memberService.getAllMembers();
+    public ResponseEntity<List<Member>> getAllMember() {
+        return ResponseEntity.ok(memberService.getAllMembers());
     }
 
     // HTTP Post Method 요청(/members) 받는 메소드

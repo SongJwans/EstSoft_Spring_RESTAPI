@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.estsoft.springproject.entity.Member;
 import com.estsoft.springproject.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,10 @@ class MemberControllerTest {
     @Test
     public void testGetAllMember() throws Exception {
         // given : 멤버 목록 저장
+        Member jh = new Member("주환");
+        Member my = new Member("민영");
+        repository.save(jh);
+        repository.save(my);
 
         // when : /members 호출
         // mock = Spring MVC 클라이언트의 요청을 받고 호출 응답, DispatcherServlet
