@@ -19,13 +19,14 @@ class UserRepositoryTest {
     public void testFindByEmail() {
         // given : when 절에서 조회하려는 사용자 정보 저장
         Users user = getUser();
+        userRepository.save(user);
 
         // when
         Users returnUser = userRepository.findByEmail(user.getEmail()).orElseThrow();
 
         // then
-        assertEquals(returnUser.getEmail(), is(user.getEmail()));
-        assertEquals(returnUser.getEmail(), is(user.getEmail()));
+        assertEquals(returnUser.getEmail(), user.getEmail());
+        assertEquals(returnUser.getEmail(), user.getEmail());
     }
     @Test
     public void testSave() {
@@ -36,7 +37,7 @@ class UserRepositoryTest {
         Users saved = userRepository.save(user);
 
         // then
-        assertEquals(saved.getEmail(), is(user.getEmail()));
+        assertEquals(saved.getEmail(), user.getEmail());
     }
 
     // 사용자 전체 조회 기능
