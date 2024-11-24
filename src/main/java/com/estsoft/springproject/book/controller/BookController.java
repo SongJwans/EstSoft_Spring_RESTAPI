@@ -31,11 +31,11 @@ public class BookController {
 
     @GetMapping
     public String showAll(Model model) {
-        List<BookDTO> list = bookService.findAll().stream()
+        List<BookDTO> bookList = bookService.findAll().stream()
                 .map(BookDTO::new)
                 .toList();
 
-        model.addAttribute("bookList", list);
+        model.addAttribute("bookList", bookList);
         return "bookManagement";
     }
 
