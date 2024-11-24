@@ -28,6 +28,7 @@ class UserRepositoryTest {
         assertEquals(returnUser.getEmail(), user.getEmail());
         assertEquals(returnUser.getEmail(), user.getEmail());
     }
+
     @Test
     public void testSave() {
         // given : when 절에서 조회하려는 사용자 정보 저장
@@ -42,7 +43,7 @@ class UserRepositoryTest {
 
     // 사용자 전체 조회 기능
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         // given
         Users user1 = getUser("test1@test.com", "pw2134");
         Users user2 = getUser("test2@test.com", "pw1234");
@@ -62,11 +63,13 @@ class UserRepositoryTest {
         assertTrue(all.contains(user3));
 
     }
+
     private Users getUser() {
         String email = "test@test.com";
         String password = "pw123456";
         return new Users(email, password);
     }
+
     private Users getUser(String email, String password) {
         return new Users(email, password);
     }
